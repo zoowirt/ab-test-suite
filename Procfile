@@ -1,1 +1,1 @@
-web: gunicorn ab_test_suite:app
+web: gunicorn wsgi:app
