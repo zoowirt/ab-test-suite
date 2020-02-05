@@ -1,0 +1,66 @@
+#header {
+	background-color: #00accc;
+	color:white;
+}
+
+html * {
+    font-family: "Sans-Serif" !important;
+    font-weight: 300;
+}
+
+.navbar {
+    background-color: #ff0000;
+}
+
+.nav-item a{
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    font-size: 1.2em;
+}
+
+.nav-item:hover{
+    background-color: rgba(104, 134, 149, 0.8)
+}
+
+.appname {
+    background-color: #eeeeee;
+    padding: 2em;
+}
+
+.btn {
+	background-color: #ffffff;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1e7295;
+    border-color: #1e7295
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #368fb5;
+    border-color: #368fb5
+}
+
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 .2rem rgba(30, 114, 149, .5)
+}
+
+.btn-default {
+    border-color: #cccccc
+}
+
+.btn-default:hover {
+	background-color: #eeeeee;
+    border-color: #eeeeee
+}
+
+#sidebar {
+	background-color:#00accc;
+	color:white;
+}
+
+.tooltip-inner {
+   white-space: pre-wrap;
+}
