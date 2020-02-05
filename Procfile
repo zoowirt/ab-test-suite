@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn ab_test_suite:app
