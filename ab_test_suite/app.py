@@ -1,5 +1,5 @@
 from flask import Flask
-from routes.routes import routes
+from ab_test_suite.routes.routes import routes
 
 app = Flask(__name__, static_folder="static")
 app.secret_key = "my_secret_key"
