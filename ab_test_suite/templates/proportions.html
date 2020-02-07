@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+A/B Test Suite
+
+{% endblock %}
+
+{% block content %}
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<link rel="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+<div class="row appname">
+    <div class="col text-center"><h2>A/B-Test Suite</h2></div>
+</div>
+<br>
+<div class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                Comparing two proportions
+            </h2>
+            Scenario: each experiment/trial results in either success or failure. Examples are
+            <ul>
+                <li>e-commerce: showing products to a customer, the customer clicks or does not click</li>
+                <li>sociology: a person is a non-smoker (success) or smoker (failure)</li>
+            </ul>
+            <h4>Step 1: Estimating the minimal number of trials</h4>
+
+            <form autocomplete="off" method="post" action="{{ url_for("routes_proportions.set_estimate_params") }}">
+            Confidence <br>
+            <input name="confidence" id="confidence" value="{{confidence | safe}}"> <br>
+
+            Expected proportion group A <br>
+            <input name="expected_proportion" id="expected_proportion" value="{{expected_proportion | safe}}"> <br>
+
+            Expected absolute delta <br>
+            <input name="expected_absolute_delta" id="expected_absolute_delta"
+                   value="{{expected_absolute_delta | safe}}"><br> <br>
+
+            <input type="submit" value="Estimate"> <br> <br>
+
+            <h5>{{minimum_number_result | safe}} </h5>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
