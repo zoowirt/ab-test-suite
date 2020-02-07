@@ -1,5 +1,5 @@
 from flask import Flask
-from proportions.routes_proportions import routes_proportions
+from ab_test_suite.proportions.routes_proportions import routes_proportions
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 app.secret_key = "my_secret_key"
