@@ -12,7 +12,7 @@ A/B Test Suite
 <link rel="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 
 <div class="row appname">
-    <div class="col text-center"><h2>A/B-Test Suite</h2></div>
+    <div class="col text-center"><h2>A/B-Test Suite: Comparing Proportions</h2></div>
 </div>
 <br>
 <div class="container">
@@ -20,31 +20,65 @@ A/B Test Suite
     <div class="row">
         <div class="col-12">
             <h2>
-                Comparing two proportions
+                Comparing two success rates
             </h2>
-            Scenario: each experiment/trial results in either success or failure. Examples are
+            Scenario: in a series of trials, each experiment results in either success or failure. Examples are
             <ul>
-                <li>e-commerce: showing products to a customer, the customer clicks or does not click</li>
+                <li>e-commerce: showing products to a customer, the customer clicks (success) or does not click
+                    (failure)
+                </li>
                 <li>sociology: a person is a non-smoker (success) or smoker (failure)</li>
             </ul>
-            <h4>Step 1: Estimating the minimal number of trials</h4>
+            We assume that we have two groups A and B, with intrinsic success rates. For a number of trials
+            and the measured number of successes in each group, we want to decide if we can deduce with a given
+            confidence that the intrinsic rates differ. <br>
+            <hr>
+            <h4>Step 1: Estimating the expected minimal number of trials</h4>
 
-            <form autocomplete="off" method="post" action="{{ url_for("routes_proportions.set_estimate_params") }}">
-            Confidence <br>
-            <input name="confidence" id="confidence" value="{{confidence | safe}}"> <br>
+            <form autocomplete="off" id="estimate_form" method="post" action="{{ url_for("routes_proportions.set_estimate_params") }}">
+            Confidence (usually 0.95 or 0.99)<br>
+            <input name="confidence_estimate" id="confidence_estimate" value="{{confidence_estimate | safe}}" required pattern="0+([.][0-9]+)?|1([.]0)?"> <br>
 
-            Expected proportion group A <br>
-            <input name="expected_proportion" id="expected_proportion" value="{{expected_proportion | safe}}"> <br>
+            Expected success rate group A (e.g., 0.5) <br>
+            <input name="expected_proportion" id="expected_proportion" value="{{expected_proportion | safe}}" required pattern="0+([.][0-9]+)?|1([.]0)?"> <br>
 
-            Expected absolute delta <br>
+            Expected absolute difference of success rates A and B (e.g., 0.1) <br>
             <input name="expected_absolute_delta" id="expected_absolute_delta"
-                   value="{{expected_absolute_delta | safe}}"><br> <br>
+                   value="{{expected_absolute_delta | safe}}" required pattern="0+([.][0-9]+)?|1([.]0)?"><br> <br>
 
-            <input type="submit" value="Estimate"> <br> <br>
+            <input type="submit" id="submit_estimate" value="Estimate"> <br> <br>
+
+            </form>
 
             <h5>{{minimum_number_result | safe}} </h5>
 
+            <hr>
+
+            <h4>Step 2: Testing for significance</h4>
+
+            <form autocomplete="off" method="post" action="{{ url_for("routes_proportions.set_significance_params") }}">
+            Confidence (usually 0.95 or 0.99)<br>
+            <input name="confidence_significance" id="confidence_significance"
+                   value="{{confidence_significance | safe}}" required pattern="0+([.][0-9]+)?|1([.]0)?"> <br>
+
+            Number of trails group A <br>
+            <input name="nA" id="nA" value="{{nA | safe}}" required pattern="[+]?[0-9]+"> <br>
+
+            Number of successes group A <br>
+            <input name="sA" id="sA" value="{{sA | safe}}" required pattern="[+]?[0-9]+"> <br>
+
+            Number of trails group B <br>
+            <input name="nB" id="nB" value="{{nB | safe}}" required pattern="[+]?[0-9]+"> <br>
+
+            Number of successes group B <br>
+            <input name="sB" id="sB" value="{{sB | safe}}" required pattern="[+]?[0-9]+"> <br> <br>
+
+            <input type="submit" value="Calculate significance"> <br> <br>
+
             </form>
+            <h5>{{descriptive_result | safe}} </h5>
+            <h5>{{test_result | safe}} </h5>
+
 
         </div>
     </div>
