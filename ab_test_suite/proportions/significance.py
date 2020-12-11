@@ -24,8 +24,8 @@ def get_results(confidence_significance: float, nA: int, sA: int, nB: int, sB: i
         significance = 99
 
     if decision:
-        test_result = f'Group {decision} is significantly better than group {looser}. The confidence level is {significance}%'
+        test_result = f'Group {decision} is significantly better than group {looser}. The confidence level is {significance}%.'
     else:
-        test_result = f'The difference between groups A and B is not significant. The confidence level is only {significance}%'
+        test_result = f'The difference between groups A and B is not significant. The confidence level is only {significance}%.'
 
     return descriptive_result, test_result
