@@ -1,5 +1,4 @@
-# todos
+# A/B-Test Suite
 
-* validate input
-* Explanations & links to math
-* After click, only reload part of website
+Significance tests and estimations for rates and means in A/B-tests
+

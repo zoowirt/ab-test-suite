@@ -25,6 +25,24 @@
 
     <title>{% block title %}{% endblock %}</title>
     <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" style="color: #FFFFFF;"><h3>A/B-Test Suite Significance Tests</b></h3></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" style="color: #FFFFFF;" href="{{ url_for("routes_proportions.proportions") }}">
+                    <h5>Rates</h5> <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" style="color: #FFFFFF;" href="{{ url_for("routes_means.means") }}">
+                    <h5>Means</h5> <span class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
 </head>

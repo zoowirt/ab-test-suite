@@ -11,21 +11,21 @@ def get_results(confidence_significance: float, nA: int, sA: int, nB: int, sB: i
         descriptive_result = 'Number of successes cannot exceed number of trials. Please check your input.'
         return descriptive_result, ''
 
-    descriptive_result = f'Descriptive result: proportion group A: {pA}, proportion group: {pB}'
+    descriptive_result = f'Descriptive result: rate group A: {pA}, rate group: {pB}'
 
     result_A = ProportionResult('A', nA, sA)
     result_B = ProportionResult('B', nB, sB)
 
     decision = z_test.decide(result_A, result_B)
     looser = z_test.get_looser(result_A, result_B)
-    significance = int(round(z_test.get_significance(result_A, result_B) * 100))
+    confidence_level = int(round(z_test.get_confidence_level(result_A, result_B) * 100))
 
-    if significance == 100:
-        significance = 99
+    if confidence_level == 100:
+        confidence_level = 99
 
     if decision:
-        test_result = f'Group {decision} is significantly better than group {looser}. The confidence level is {significance}%.'
+        test_result = f'The confidence level is {confidence_level}%. The rate of {decision} is significantly larger than that of {looser}.'
     else:
-        test_result = f'The difference between groups A and B is not significant. The confidence level is only {significance}%.'
+        test_result = f'The confidence level of {confidence_level}% does not exceed {int(confidence_significance*100)}%. The rates of A and B do thus not differ significantly.'
 
     return descriptive_result, test_result

@@ -23,7 +23,7 @@ class zTest:
         else:
             return None
 
-    def get_significance(self, A: ProportionResult, B: ProportionResult) -> float:
+    def get_confidence_level(self, A: ProportionResult, B: ProportionResult) -> float:
         Z = self._get_Z_value(A, B)
         return 2 * norm.cdf(np.abs(Z)) - 1
 
@@ -48,3 +48,12 @@ class zTest:
             return Z_nominator / Z_denominator
         else:
             return 0
+
+    def _get_mean_std(self, A: ProportionResult, B: ProportionResult) -> (float, float):
+        pA = A.s/A.n
+        pB = B.s/B.n
+
+        mean = pA - pB
+        std = np.sqrt(pA*(1-pA)/ A.n + pB*(1-pB)/ B.n)
+
+        return mean, std
