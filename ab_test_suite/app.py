@@ -1,6 +1,6 @@
 from flask import Flask
-from routes.routes_means import routes_means
-from routes.routes_proportions import routes_proportions
+from proportions.routes_means import routes_means
+from proportions.routes_proportions import routes_proportions
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 app.secret_key = "my_secret_key"
